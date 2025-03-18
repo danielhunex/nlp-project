@@ -1,0 +1,58 @@
+You are given three JSON objects: "document", "guidelines", and "palmWords". Each has the following structure:
+
+1) "document" contains narratives:
+{
+  "narratives": [
+    "Narrative text 1",
+    "Narrative text 2",
+    ...
+  ]
+}
+
+2) "guidelines" contains transformation or editing rules:
+{
+  "guidelines": [
+    "Guideline 1",
+    "Guideline 2",
+    ...
+  ]
+}
+
+3) "palmWords" contains word or phrase replacements:
+{
+  "palmWords": [
+    {
+      "original": "Original word or phrase",
+      "replacement": "New word or phrase"
+    },
+    ...
+  ]
+}
+
+**Your task** is to:
+- For each narrative in "document", produce a transformed version ("updatedNarrative").
+- In each "updatedNarrative", you must apply:
+  a) All relevant guidelines (as described in the "guidelines" JSON array).
+  b) All relevant word/phrase replacements from the "palmWords" JSON array, replacing any occurrences of "original" with "replacement".
+- Track which guidelines and palm word replacements were actually applied to each individual narrative.
+
+The final output should be a single JSON object with this structure:
+
+{
+  "narratives": [
+    {
+      "originalNarrative": "Original narrative text",
+      "updatedNarrative": "Transformed narrative text with guidelines and palmWords applied",
+      "advisor": [
+        "List of guidelines and palmWords actually used to create the updatedNarrative"
+      ]
+    },
+    ...
+  ]
+}
+
+**Important points:**
+- If a particular guideline or palmWord does not apply to a specific narrative (e.g., the narrative does not contain the original word/phrase that needs replacing), do not include it in the "advisor" array for that narrative.
+- Maintain the original wording and structure where possible, unless a guideline or palmWord explicitly requires a change.
+
+Return only the final JSON object, with no additional commentary.
