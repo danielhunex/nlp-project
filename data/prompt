@@ -4,32 +4,32 @@ def get_prompt(document, guidelines, palm_words):
 
     1) "document" contains narratives:
     {{
-    "narratives": [
-        "Narrative text 1",
-        "Narrative text 2",
-        ...
-    ]
+        "narratives": [
+            "Narrative text 1",
+            "Narrative text 2",
+            ...
+        ]
     }}
 
     2) "guidelines" contains transformation or editing rules:
     {{
-    "guidelines": [
-        "Guideline 1",
-        "Guideline 2",
-        ...
-    ]
+        "guidelines": [
+            "Guideline 1",
+            "Guideline 2",
+            ...
+        ]
     }}
 
     3) "palmWords" contains word or phrase replacements:
-    {
-    "palmWords": [
-        {{
-        "original": "Original word or phrase",
-        "replacement": "New word or phrase"
-        }},
-        ...
-    ]
-    }
+    {{
+        "palmWords": [
+            {{
+                "original": "Original word or phrase",
+                "replacement": "New word or phrase"
+            }},
+            ...
+        ]
+    }}
 
     document: {document}
     guideline: {guidelines}
@@ -38,23 +38,23 @@ def get_prompt(document, guidelines, palm_words):
     **Your task** is to:
     - For each narrative in "document", produce a transformed version ("updatedNarrative").
     - In each "updatedNarrative", you must apply:
-    a) All relevant guidelines (as described in the "guidelines" JSON array).
-    b) All relevant word/phrase replacements from the "palmWords" JSON array, replacing any occurrences of "original" with "replacement".
+      a) All relevant guidelines (as described in the "guidelines" JSON array).
+      b) All relevant word/phrase replacements from the "palmWords" JSON array, replacing any occurrences of "original" with "replacement".
     - Track which guidelines and palm word replacements were actually applied to each individual narrative.
 
     The final output should be a single JSON object with this structure:
 
     {{
-    "narratives": [
-        {{
-        "originalNarrative": "Original narrative text",
-        "updatedNarrative": "Transformed narrative text with guidelines and palmWords applied",
-        "advisor": [
-            "List of guidelines and palmWords actually used to create the updatedNarrative"
+        "narratives": [
+            {{
+                "originalNarrative": "Original narrative text",
+                "updatedNarrative": "Transformed narrative text with guidelines and palmWords applied",
+                "advisor": [
+                    "List of guidelines and palmWords actually used to create the updatedNarrative"
+                ]
+            }},
+            ...
         ]
-        }},
-        ...
-    ]
     }}
 
     **Important points:**
